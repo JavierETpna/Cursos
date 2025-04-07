@@ -1,0 +1,51 @@
+h1 {
+    color:brown;
+    background-color: gainsboro;
+    font-size: 60px;
+}
+h2 {
+    color: rgb(38, 76, 11);
+    font-size: 32px;
+}
+p {
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    line-height: 1.4;
+}
+.risas {
+    color:rgb(210, 105, 30);
+}
+#crítico{
+    color: rgb(139, 0, 0);
+    font-style: italic;
+    font-weight: 400;
+    font-family: Montserrat;
+    font-size:medium;
+    text-align: center;
+}
+.form_style{
+    width: 308px;
+    background: rgb(105, 105, 105);
+    padding: 5px 10px;
+}
+.input_style{
+    width: 98%;
+    background: white;
+}
+.input_color_style{
+    width: none;
+    background: rgb(38, 38, 38);
+}
+div{
+    height:3px;
+    padding: 1%;
+}
+img{
+    background-color: rgb(75, 72, 72);
+    padding: 5px 5px;
+    margin: 2px 0;
+    border-width: 5px;
+    border-style: dotted;
+    border-radius: 70% 15%;
+    border-color: rgb(13, 9, 133);
+}
