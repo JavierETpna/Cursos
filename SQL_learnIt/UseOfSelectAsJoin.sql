@@ -1,7 +1,7 @@
 /**
 Otra forma diferente de hace JOIN
 Selecciono la columna coincidente con WHERE
-y se selecciona las Tabas a unir en FROM, nombrándolas y separadas por coma (,)
+y se selecciona las Tabas a unir en FROM, nombrï¿½ndolas y separadas por coma (,)
 **/
 
 SELECT
@@ -31,16 +31,9 @@ FROM
   	   [EmployeeID]
 	  ,[OrderID]
       ,[CustomerID]
-      ,[OrderDate]
-      ,[RequiredDate]
-      ,[ShippedDate]
-      ,[ShipVia]
       ,[Freight]
-      ,[ShipName]
-      ,[ShipAddress]
       ,[ShipCity]
       ,[ShipRegion]
-      ,[ShipPostalCode]
       ,[ShipCountry]
 	 FROM [master].[dbo].[Orders]
 	 WHERE [ShipCountry] = 'USA'
