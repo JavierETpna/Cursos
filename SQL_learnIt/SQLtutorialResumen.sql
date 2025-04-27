@@ -6,7 +6,7 @@ FROM -- base de datos (Tabla) a consultar
 WHERE { SELECT columna1 FROM tabla1 WHERE columna1 = x } -- inmediatamente después de FROM. Evalúa una expresión boolean fila por fila, para devolver la fila si es true (para null o false no devuelve la fila)
     -- Operadores: = ; <> ; < ; > ; <= ; >=
     -- Puede comparase con un literal (string, number, text, boolean, date) o con otra columna: columna_1 < columna_2
-    EXTRACT FROM { EXTRACT( YEAR FROM columnaDate) = 2020 } -- para Fechas se puede usar para comparar una parte del valor
+    EXTRACT FROM { EXTRACT(YEAR FROM columnaDate) = 2020 } -- para Fechas se puede usar para comparar una parte del valor
     IN -- para seleccionar valores, equivale a poner OR repetidas veces: columna = x OR columna = y OR ...
         NOT IN -- para la selección inversa podemos usar NOT IN
     BETWEEN -- es el equivalente a usar: expression >= low AND expression <= high
@@ -30,7 +30,19 @@ ORDER BY -- para ordenar primero por una columna, luego por otra declaro las col
     DESC -- en orden descendiente
     NULL FIRST -- ubicar nulls primero
     NULL LAST -- ubicar nulls último
-GROUP BY
+GROUP BY { SELECT Column1, aggregateFunction, Column2 FROM Table1 GROUP BY Column1, column2 }
+    /** Se suelen usar con funciones de agregación
+    AVG, SUM, MIN, MAX, COUNT
+    Cuando se usa una fución de agragción en una columna
+    todas las demas deben tener funciones de agregación o ser parte de la condición de GROUP BY
+    **/
+HAVING { SELECT column1, column2, aggregate_function (column3) -- Se coloca inmediatamente después de GROUP BY
+        FROM  table1
+        GROUP BY column1, column2
+        HAVING group_condition }
+        /** Se usa para agregar una condición de selección luego de agrupar
+        If you use a HAVING clause without a GROUP BY clause, the HAVING clause behaves like a WHERE clause.
+        **/
 AND -- combina dos expresiones boolean. Puede devolver null si una expresión es true y la otra null, o si ambas son null (si una es false y la otra null devuelve false). Ejemplo de uso: SELECT column FROM table WHERE name = 'name1' AND lastName = 'name2'
 OR -- combina dos expresiones boolean. Puede devolver null si una expresión es false y la otra null, o si ambas son null (si una es true y la otra null devuelve true).
 /** AND:
@@ -86,4 +98,20 @@ RIGHT JOIN
 FULL OUTER JOIN -- también puede escribisrse FULL JOIN
     /** Mantiene los valores que no tienen su correspondiente para ambas tablas
     Técnicamente, es como una combinación de LEFT JOIN y RIGHT JOIN
+    **/
+CROSS JOIN -- Combina todas las filas de la Tabla1 con todas las filas de la Tabla2
+    { SELECT Columnas FROM Table1 CROSS JOIN Table2 }
+    /** No llava condición. La unión resultante es un Producto Cartesiano
+    **/
+UNION   { SELECT column1, column2 FROM table1 UNION SELECT column3, column4 FROM table2; }
+    UNION ALL
+    /** Combina las columnas de ambas tablas
+    UNION Combina valores únicos
+    UNION ALL Combina todos los valores
+    Consideraciones: https://www.sqltutorial.org/sql-union/
+    Same number of columns. Compatible data types. Column names. Execution order.
+    **/
+INTERSECT { SELECT column1, column2 FROM table1 INTERSECT SELECT column3, column4 FROM table2; }
+    /** Similar a UNION, cambina las tablas pero
+    devuelve solamente las filas que coinciden en ambas tablas
     **/
