@@ -1,3 +1,15 @@
+-- SQL Hierarchy: Orden general en el que se debe indicar cada comando
+USE -- Base de datos con la que se está trabajando
+SELECT -- Campos/atributos/columnas a seleccionar
+FROM -- Tabla de dónde extraer
+JOIN -- Tabla con la cual unir
+WHERE -- Condición para las tablas originales
+GROUP BY -- Agrupamiento
+HAVING -- Condición luego del agrupamiento
+ORDER BY -- Orden por columna
+
+-- COMANDOS MÁS COMUNES --
+
 SELECT { SELECT columna1, columna2 FROM tabla1 }
 --    (*) es para seleccionar todo
     DISTINCT { SELECT DISTINCT columna1, columna2 FROM tabla1 } -- Para seleccionar valores únicos. Si selecciono dos columnas serían los valores únicos ente esas dos columnas
