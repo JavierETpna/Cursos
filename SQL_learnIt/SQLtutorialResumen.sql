@@ -1,3 +1,58 @@
+/**
+
+RDBMS
+    Relational
+    Database
+    Management
+    System
+
+CRUD
+    Create
+    Read
+    Update
+    Delete
+
+== Data Types ==
+
+Numericos
+-Enteros
+    int - rango de 4200 millones
+    smallint - rango de 65535
+    tinyint - rango de 255
+    bigint - aprox 9 cuatrillones
+-Decimales
+    float - Aprox (32 bits), no es exacto
+    real - Ídem float
+    double - Alta precisión (64 bits), mejor que float
+    decimal(p,s) - Exacto, evita errores de redondeo.
+        p: cantidad de dígitos totales.
+        s: cantidad de decimales
+Texto
+    char(n) - cadena exacta, si no hay caracteres completa con espacios
+        n: cantidad de caracteres
+    varchar(n) - solo almacena caracteres necesarios, hast al acantidad de n
+    text - para cadenas de texto extensas
+Fechas y hora
+    date - solo fecha
+    time - solo hora
+    datetime - fecha y hora
+    year - solo el año
+Booleanos
+    boolean - representa true / false, algunos RDBMS lo almacenana como 1 / 0
+Binarios
+    binary
+    varbinary
+    blob - Binary Large Object
+Identificadores únicos
+    UUID: Universally Unique Identifier
+    GUID: Globally Unique Identifier
+Personalizados (según RDBMS)
+    enum - valores predefinidos tipo 'pequeño' / 'mediano' / 'grande'
+    array - lista de valores como [1,2,3] (en PostgreSQL)
+    json/xml - Estructuras semiestrucuradas
+    
+**/
+
 -- SQL Hierarchy: Orden general en el que se debe indicar cada comando
 USE -- Base de datos con la que se está trabajando
 SELECT -- Campos/atributos/columnas a seleccionar
@@ -127,3 +182,12 @@ INTERSECT { SELECT column1, column2 FROM table1 INTERSECT SELECT column3, column
     /** Similar a UNION, cambina las tablas pero
     devuelve solamente las filas que coinciden en ambas tablas
     **/
+EXCEPT { SELECT column1,column2 FROM table1 EXCEPT SELECT column1,column2 FROM table2 }
+    /** A diferencia de INTERSECT, devuleve las filas de la Tabla izquierda
+    menos las coincidencias con la tabla derecha.
+    En algunos RDBMS puede llamarse MINUS.
+    Consideraciones: https://www.sqltutorial.org/sql-minus/
+    Same number of columns. Compatible data types. Column names. Execution order.
+    **/
+INSERT { INSERT INTO table1(column1, column2, column3) VALUES (val1, val2, val3), (val4, val5, val6) }
+    /** Agrega filas a una tabla. Si no se designa columna o valor agrega null **/
